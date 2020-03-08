@@ -1,6 +1,7 @@
 const express = require('express')
 const path = require('path')
 const db = require('./db')
+const {Company, Product, Offering} = db.models
 
 const app = express()
 
@@ -11,17 +12,17 @@ app.get("/",(req,res,next)=>{
 })
 
 app.get("/api/products", (req,res,next)=>{
-    db.readFile("products")
+    Product.findAll()
         .then(products=>res.send(products))
         .catch(next)
 })
 app.get("/api/companies", (req,res,next)=>{
-    db.readFile("companies")
+    Company.findAll()
         .then(companies=>res.send(companies))
         .catch(next)
 })
 app.get("/api/offerings", (req,res,next)=>{
-    db.readFile("offerings")
+    Offering.findAll()
         .then(offerings=>res.send(offerings))
         .catch(next)
 })

@@ -67,21 +67,15 @@ const sync = async () => {
     Product.create({ name: "bazz", suggestedPrice: 4.50})
   ]);
 
-  const [Coffee, Computer, Bagel] = await Promise.all([
+  const [X, Y, Z] = await Promise.all([
     Offering.create({ price: 7, companyId: AcmeGlobal.id, productId: Bar.id }),
     Offering.create({ price: 8, companyId: AcmeTri.id, productId: Bazz.id }),
     Offering.create({ price: 9, companyId: AcmeUS.id, productId: Foo.id })
   ]);
 };
 
-const readFile=async(table)=>{
-    const data = await conn.query(`SELECT * FROM ${table}`)
-    return data[0]
-}
-
 module.exports = {
   sync,
-  readFile,
   models: {
     Company,
     Product,
